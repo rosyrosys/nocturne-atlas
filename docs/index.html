@@ -245,7 +245,7 @@
       <audio controls preload="none">
         <source src="../examples/plate_i_borealis_chart_to_nocturne.wav" type="audio/wav">
       </audio>
-      <p class="meta">90 s, derived from the source chart in C#-minor mode (340 events).</p>
+      <p class="meta">90 s, derived from the source chart in C#-minor mode (330 events).</p>
     </div>
   </div>
 </section>
@@ -266,7 +266,7 @@
       <audio controls preload="none">
         <source src="../examples/plate_ii_australis_chart_to_nocturne.wav" type="audio/wav">
       </audio>
-      <p class="meta">90 s, derived from the second source chart in octatonic mode (342 events).</p>
+      <p class="meta">90 s, derived from the second source chart in octatonic mode (332 events).</p>
     </div>
   </div>
 </section>
@@ -291,18 +291,19 @@
   <ol>
     <li>Greyscale the input chart; threshold to a binary star mask.</li>
     <li>Connected-component labelling identifies stars; centroid, size, and peak luminance recorded.</li>
-    <li>Map (x, y, brightness, size) to (time, MIDI pitch, velocity, duration).</li>
-    <li>Pull pitches toward a register focus; snap to a Romantic-period mode template (default C-sharp minor).</li>
-    <li>Add a slow bass drone beneath the brightest stars; emit sustain-pedal pulses at 8-second intervals.</li>
+    <li>Map (x, y, brightness, size) to (time, MIDI pitch, velocity, duration); snap to a mode template (default C-sharp minor).</li>
+    <li>Split events into two voices by vertical fraction: a right-hand cantabile voice (with octave-displacement voice-leading) and a left-hand voice whose pitches are replaced by a deterministic rolling arpeggio.</li>
+    <li>Divide the duration into four phrases; for each phrase, derive a chord from the brightest event and stack a four-note Tetractys drone (offsets −12, −5, 0, +7) at its root.</li>
+    <li>Depress the sustain pedal at each chord onset; release just before the next chord. Apply a hairpin velocity envelope per phrase.</li>
   </ol>
 
   <h3>Nocturne  →  Chart</h3>
   <ol>
     <li>Compute the magnitude STFT of the input audio.</li>
     <li>For each frame, retain the top-K spectral peaks above a magnitude floor.</li>
-    <li>Map (frame, frequency, magnitude) to (angle, radius, star size).</li>
-    <li>Render stars as halo + core + diffraction spike on a midnight ground.</li>
-    <li>Compose with engraved frame, ecliptic arc, and Latin cartouche.</li>
+    <li>Map (frame, frequency, magnitude) to (angle, radius, star size); the log-frequency-to-radius mapping enforces the Pythagorean 1:2 octave ratio at every step of the radial axis.</li>
+    <li>Render stars as halo + core + four-point diffraction spike on a midnight (or indigo) ground.</li>
+    <li>Overlay the engraved-paper register: rim, three declination circles, hour rays, and ecliptic curve as fine ink strokes.</li>
   </ol>
 </section>
 
@@ -328,19 +329,19 @@
 <section>
   <h2>Code  ·  Paper</h2>
   <p>
-    The complete source code is on GitHub: <a href="https://github.com/[username]/nocturne-atlas">github.com/[username]/nocturne-atlas</a> (replace <code>[username]</code> with the maintainer's handle).
+    The complete source code is on GitHub: <a href="https://github.com/rosyrosys/nocturne-atlas">github.com/rosyrosys/nocturne-atlas</a> (currently private; will be made public upon acceptance, in line with double-anonymous review).
   </p>
   <p>
     The accompanying paper is currently under review. The preprint and supplementary material will be linked here upon acceptance.
   </p>
 
   <h3>Quick start</h3>
-  <pre><code>git clone https://github.com/[username]/nocturne-atlas
+  <pre><code>git clone https://github.com/rosyrosys/nocturne-atlas
 cd nocturne-atlas
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python synthesize_demo_inputs.py
-python run_atlas_artistic.py</code></pre>
+python run_paper.py</code></pre>
 </section>
 
 <footer>
