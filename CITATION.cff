@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "Nocturne Atlas: a deterministic bidirectional transcoder between pre-photographic star charts and the nineteenth-century nocturne"
+message: "If you use this software, please cite the accompanying article."
+type: software
+authors:
+  - given-names: "[redacted for review]"
+    family-names: "[redacted for review]"
+    affiliation: "[redacted for review]"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+keywords:
+  - cross-modal transcoding
+  - star charts
+  - nocturne
+  - deterministic mapping
+  - instrument-as-witness
+  - parametric mapping sonification
+  - generative art
+license: MIT
+version: 1.0.0
+date-released: "2026-01-01"
+preferred-citation:
+  type: article
+  title: "Nocturne Atlas: a deterministic bidirectional transcoder between pre-photographic star charts and the nineteenth-century nocturne"
+  authors:
+    - given-names: "[redacted for review]"
+      family-names: "[redacted for review]"
+  year: 2026
+  journal: "[Journal title to be confirmed upon acceptance]"
+  doi: "[to be inserted upon acceptance]"

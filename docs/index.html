@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nocturne Atlas</title>
+<style>
+  :root {
+    --bg-deep: #04070e;
+    --bg-mid: #0a1226;
+    --bg-rim: #16203c;
+    --ivory: #f4ecda;
+    --ivory-dim: #c9bf9d;
+    --copper: #c9954a;
+    --copper-dim: #8b6635;
+    --frame: #604528;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: radial-gradient(ellipse at center,
+      var(--bg-mid) 0%, var(--bg-deep) 100%);
+    color: var(--ivory);
+    font-family: "Times New Roman", "Liberation Serif", Georgia, serif;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(2px 2px at 20% 30%, rgba(248, 240, 218, 0.3), transparent),
+      radial-gradient(1.5px 1.5px at 70% 60%, rgba(248, 240, 218, 0.25), transparent),
+      radial-gradient(1px 1px at 40% 80%, rgba(248, 240, 218, 0.2), transparent),
+      radial-gradient(1px 1px at 90% 15%, rgba(248, 240, 218, 0.18), transparent),
+      radial-gradient(1px 1px at 15% 65%, rgba(248, 240, 218, 0.16), transparent);
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 64px 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    text-align: center;
+    border-bottom: 1px solid var(--copper-dim);
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+    color: var(--ivory);
+    font-weight: 400;
+  }
+  h1::before, h1::after {
+    content: " · ";
+    color: var(--copper);
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--ivory-dim);
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+  }
+  .latin {
+    margin-top: 18px;
+    color: var(--copper);
+    font-style: italic;
+    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    border-bottom: 1px solid var(--frame);
+    padding-bottom: 8px;
+    margin-top: 56px;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    color: var(--ivory);
+    margin: 28px 0 8px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  p { color: var(--ivory-dim); }
+  a { color: var(--copper); text-decoration: none; border-bottom: 1px dotted var(--copper-dim); }
+  a:hover { color: var(--ivory); border-bottom-color: var(--ivory); }
+
+  .plate {
+    border: 1px solid var(--frame);
+    padding: 8px;
+    background: var(--bg-deep);
+    margin: 24px 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+  .plate img { width: 100%; height: auto; display: block; }
+  .plate-caption {
+    font-size: 0.85rem;
+    color: var(--ivory-dim);
+    margin: 12px 0 0;
+    font-style: italic;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .audio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 16px 0;
+  }
+  .audio-card {
+    flex: 1 1 380px;
+    background: rgba(16, 28, 56, 0.4);
+    border: 1px solid var(--frame);
+    padding: 18px;
+  }
+  .audio-card h4 {
+    margin: 0 0 8px;
+    color: var(--copper);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .audio-card audio {
+    width: 100%;
+    margin-top: 10px;
+    filter: invert(0.85) hue-rotate(180deg) saturate(0.6);
+  }
+  .audio-card .meta {
+    font-size: 0.78rem;
+    color: var(--ivory-dim);
+    margin: 8px 0 0;
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--bg-rim);
+    color: var(--ivory-dim);
+  }
+  th {
+    color: var(--copper);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+  }
+  code {
+    color: var(--copper);
+    background: rgba(16, 28, 56, 0.5);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-family: "Consolas", monospace;
+    font-size: 0.9em;
+  }
+  pre {
+    background: var(--bg-deep);
+    border: 1px solid var(--frame);
+    padding: 16px;
+    overflow-x: auto;
+    color: var(--ivory-dim);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+
+  .dim { color: var(--ivory-dim); font-size: 0.92rem; }
+
+  footer {
+    margin-top: 96px;
+    padding-top: 32px;
+    border-top: 1px solid var(--copper-dim);
+    text-align: center;
+    color: var(--ivory-dim);
+    font-style: italic;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+  }
+  .ornament {
+    text-align: center;
+    color: var(--copper);
+    font-size: 1.2rem;
+    margin: 32px 0;
+    letter-spacing: 0.4em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Nocturne Atlas</h1>
+  <div class="subtitle">A deterministic bidirectional transcoder between pre-photographic star charts and the nineteenth-century nocturne</div>
+  <div class="latin">AVDITVS  IN  STELLAS  ·  STELLAE  IN  AVDITVM</div>
+</header>
+
+<section>
+  <h2>Premise</h2>
+  <p>
+    The salon piano of the early nineteenth century and the engraver's burin of the late seventeenth century were instruments of artistic production. They can also be read more strictly: as devices that transcribed a perceived absence into a fixed material trace. The atlas plate gave a metric image of stars whose light had arrived hundreds or thousands of years before; the nocturne gave a measured score for an experience that, in itself, had no measure.
+  </p>
+  <p>
+    <em>Nocturne Atlas</em> takes this <strong>witness-structure</strong> as its operative premise and constructs a deterministic bidirectional transcoder between the two instruments. From <em>chart to nocturne</em>, detected stars on a planispheric plate are mapped to MIDI events whose pitch tracks declination, whose velocity tracks apparent magnitude, and whose duration tracks pixel size. From <em>nocturne to chart</em>, spectral peaks of an audio recording are placed on a planisphere by mapping elapsed time to angular position and log-frequency to radial position. The implementation requires no learned model, no GPU, and no stochastic component; outputs are bit-identical given fixed input and configuration.
+  </p>
+</section>
+
+<div class="ornament">·  ·  ·</div>
+
+<section>
+  <h2>Plate I  ·  Hemisphaerium Borealis</h2>
+  <div class="plate">
+    <img src="../figures/plate_i_borealis.png" alt="Plate I Hemisphaerium Borealis: four-panel atlas plate">
+  </div>
+  <p class="plate-caption">Plate I, Hemisphaerium Borealis. Midnight palette. Four-panel composite: source chart (engraved planisphere), chart-to-nocturne luminous score, source nocturne (audio waveform), nocturne-to-chart planisphere.</p>
+
+  <h3>Listen</h3>
+  <div class="audio-row">
+    <div class="audio-card">
+      <h4>Chart  →  Nocturne</h4>
+      <audio controls preload="none">
+        <source src="../examples/plate_i_borealis_chart_to_nocturne.wav" type="audio/wav">
+      </audio>
+      <p class="meta">90 s, derived from the source chart in C#-minor mode (340 events).</p>
+    </div>
+  </div>
+</section>
+
+<div class="ornament">·  ·  ·</div>
+
+<section>
+  <h2>Plate II  ·  Hemisphaerium Australis</h2>
+  <div class="plate">
+    <img src="../figures/plate_ii_australis.png" alt="Plate II Hemisphaerium Australis: four-panel atlas plate">
+  </div>
+  <p class="plate-caption">Plate II, Hemisphaerium Australis. Indigo palette, octatonic mode. Note that the audio-derived planisphere (lower right) shows the same constellation pattern as Plate I; the deterministic transcoder yields byte-identical outputs from identical audio inputs.</p>
+
+  <h3>Listen</h3>
+  <div class="audio-row">
+    <div class="audio-card">
+      <h4>Chart  →  Nocturne</h4>
+      <audio controls preload="none">
+        <source src="../examples/plate_ii_australis_chart_to_nocturne.wav" type="audio/wav">
+      </audio>
+      <p class="meta">90 s, derived from the second source chart in octatonic mode (342 events).</p>
+    </div>
+  </div>
+</section>
+
+<div class="ornament">·  ·  ·</div>
+
+<section>
+  <h2>The concentric-ring artifact</h2>
+  <div class="plate" style="max-width: 540px; margin: 24px auto;">
+    <img src="../figures/plate_i_chart_from_audio.png" alt="Audio-derived planisphere showing concentric ring pattern">
+  </div>
+  <p class="plate-caption">A planisphere derived from a harmonically periodic input nocturne. The concentric rings are the formal residue of the music's repeating harmonic ground; no historical chart shows such patterns because the night sky does not.</p>
+</section>
+
+<div class="ornament">·  ·  ·</div>
+
+<section>
+  <h2>Method, in brief</h2>
+  <p>The transcoder runs in two directions, each a deterministic numerical mapping.</p>
+
+  <h3>Chart  →  Nocturne</h3>
+  <ol>
+    <li>Greyscale the input chart; threshold to a binary star mask.</li>
+    <li>Connected-component labelling identifies stars; centroid, size, and peak luminance recorded.</li>
+    <li>Map (x, y, brightness, size) to (time, MIDI pitch, velocity, duration).</li>
+    <li>Pull pitches toward a register focus; snap to a Romantic-period mode template (default C-sharp minor).</li>
+    <li>Add a slow bass drone beneath the brightest stars; emit sustain-pedal pulses at 8-second intervals.</li>
+  </ol>
+
+  <h3>Nocturne  →  Chart</h3>
+  <ol>
+    <li>Compute the magnitude STFT of the input audio.</li>
+    <li>For each frame, retain the top-K spectral peaks above a magnitude floor.</li>
+    <li>Map (frame, frequency, magnitude) to (angle, radius, star size).</li>
+    <li>Render stars as halo + core + diffraction spike on a midnight ground.</li>
+    <li>Compose with engraved frame, ecliptic arc, and Latin cartouche.</li>
+  </ol>
+</section>
+
+<div class="ornament">·  ·  ·</div>
+
+<section>
+  <h2>Source materials</h2>
+  <p class="dim">The repository ships with procedurally generated stand-in inputs — not historical reproductions. For publication-grade artifacts, replace them with:</p>
+  <table>
+    <tr>
+      <th>Charts</th>
+      <td>High-resolution scans of Bayer's <em>Uranometria</em> (1603), Hevelius's <em>Firmamentum Sobiescianum</em> (1690), or Bode's <em>Uranographia</em> (1801).</td>
+    </tr>
+    <tr>
+      <th>Audio</th>
+      <td>Public-domain recordings of Chopin's nocturnes, Field's nocturnes, Fauré's late nocturnes, or Debussy's <em>Trois Nocturnes</em> (1899).</td>
+    </tr>
+  </table>
+</section>
+
+<div class="ornament">·  ·  ·</div>
+
+<section>
+  <h2>Code  ·  Paper</h2>
+  <p>
+    The complete source code is on GitHub: <a href="https://github.com/[username]/nocturne-atlas">github.com/[username]/nocturne-atlas</a> (replace <code>[username]</code> with the maintainer's handle).
+  </p>
+  <p>
+    The accompanying paper is currently under review. The preprint and supplementary material will be linked here upon acceptance.
+  </p>
+
+  <h3>Quick start</h3>
+  <pre><code>git clone https://github.com/[username]/nocturne-atlas
+cd nocturne-atlas
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python synthesize_demo_inputs.py
+python run_atlas_artistic.py</code></pre>
+</section>
+
+<footer>
+  <div>“The chart we have produced is not a sky; the score we have produced is not a nocturne. They are both, instead, a small registration of what an instrument has the capacity to witness when its witnessing is mediated by another instrument from a parallel tradition.”</div>
+  <div style="margin-top: 16px; color: var(--copper);">·  Nocturne Atlas  ·  2026  ·</div>
+</footer>
+
+</div>
+</body>
+</html>
