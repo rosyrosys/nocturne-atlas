@@ -10,7 +10,7 @@ The transcoder runs in two directions.
 
 **Chart → nocturne.** Detected stars on a planispheric plate are mapped to MIDI events. Star declination determines pitch (snapped to a Romantic-period mode), apparent magnitude determines velocity and duration, and right-ascension determines onset time. A slow bass drone and sustain-pedal pulses are added to produce a Chopin-style nocturne register.
 
-**Nocturne → chart.** Spectral peaks of an audio recording are placed on a planispheric chart. Elapsed time becomes angular position around the celestial pole; log-frequency becomes radial position from outer rim (low) to centre (high); spectral magnitude becomes apparent stellar brightness. An engraved-style frame, ecliptic arc, and Latin cartouche complete the plate.
+**Nocturne → chart.** Spectral peaks of an audio recording are placed on a planispheric chart. Elapsed time becomes angular position around the celestial pole; log-frequency becomes radial position from outer rim (low) to centre (high); spectral magnitude becomes apparent stellar brightness. An engraved-style frame, declination circles, ecliptic arc, and four-point diffraction-spike stars complete the plate.
 
 Two paired plates — *Hemisphaerium Borealis* (midnight palette) and *Hemisphaerium Australis* (indigo palette) — demonstrate the system. A concentric-ring artifact appearing in audio-derived charts is identified as a diagnostic formal residue of harmonically periodic input.
 
@@ -27,10 +27,8 @@ python synthesize_demo_inputs.py
 # Generate the two paired plates in the paper register (default, canonical)
 python run_paper.py
 
-# Alternate visual registers (preserved for reference):
-#   python run_quadrivium.py        — heavy parchment register
-#   python run_atlas_parchment.py   — parchment register only
-#   python run_atlas_artistic.py    — midnight register
+# Alternate visual register: heavy parchment instead of paper
+python run_quadrivium.py
 ```
 
 Outputs are written to `outputs/<label>_paper/`:
@@ -49,20 +47,18 @@ outputs/plate_i_borealis_paper/
 
 ## Architecture
 
-The codebase is roughly 600 lines of deterministic Python over five modules.
+The codebase is roughly 2,500 lines of deterministic Python over six modules.
 
 ```
-quadrivium/                  # Pythagorean Quadrivium structure (canonical)
+quadrivium/
 ├── __init__.py
 ├── arithmetic.py            # Pythagorean ratios, Greek modes, Tetractys
 ├── geometry.py              # planispheric projection, log-frequency-to-radius mapping
-├── music.py                 # chart → MIDI (numbers in time) + Tetractys bass drone
+├── music.py                 # chart → MIDI (RH cantabile + LH rolling arpeggio,
+│                            #   four-phrase chord progression, Tetractys drone)
 ├── astronomy.py             # audio → planisphere (numbers in time and space) + ring detection
 ├── paper.py                 # paper register: clean ivory engraving paper (default)
 └── parchment.py             # parchment register: dark sepia ink on aged paper
-
-transcoder/                  # legacy package (preserved for reference)
-└── ...
 ```
 
 The four submodules of `quadrivium/` correspond to the four sciences of the Pythagorean Quadrivium as Park (2025) describes them: arithmetic (pure numbers), geometry (numbers in space), music (numbers in time), astronomy (numbers in time and space). The bidirectional transcoder is the operative numerical mediation between music and astronomy that the historical Quadrivium tradition treated as their underlying kinship.
@@ -89,7 +85,7 @@ The repository ships with **procedural stand-in inputs**, not historical reprodu
 - **Charts**: high-resolution scans of Bayer's *Uranometria* (1603), Hevelius's *Firmamentum Sobiescianum* (1690), or Bode's *Uranographia* (1801). Public-domain plates are available from the Linda Hall Library, the British Library, the Bibliothèque nationale de France, and the Royal Astronomical Society.
 - **Audio**: public-domain recordings of Chopin's nocturnes (Op. 9 No. 2, Op. 27 No. 1, Op. 48 No. 1, and Op. 62 No. 1 are particularly well-suited), Field's nocturnes, Fauré's late nocturnes, or Debussy's *Trois Nocturnes* of 1899.
 
-Place inputs in `inputs/` with the naming convention used by `run_atlas_artistic.py`.
+Place inputs in `inputs/` with the naming convention used by `run_paper.py` (`tabula_stellarum_standin.png` and `tabula_stellarum_alt.png` for the two charts; `nocturne_csm_standin.wav` for the audio).
 
 ## Custom prompts and modes
 
