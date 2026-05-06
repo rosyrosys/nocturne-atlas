@@ -31,6 +31,9 @@ outputs/
 *.wav
 *.mid
 
+# Audio embedded in the showcase page is committed (small, two files)
+!docs/audio/*.wav
+
 # OS
 .DS_Store
 Thumbs.db
