@@ -1,29 +1,34 @@
 cff-version: 1.2.0
 title: "Nocturne Atlas: a deterministic bidirectional transcoder between pre-photographic star charts and the nineteenth-century nocturne"
-message: "If you use this software, please cite the accompanying article."
+message: "If you use this software, please cite both the software (this record) and the accompanying article."
 type: software
 authors:
-  - given-names: "[redacted for review]"
-    family-names: "[redacted for review]"
-    affiliation: "[redacted for review]"
-    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - given-names: "Eun-Ji"
+    family-names: "Park"
+    affiliation: "Seoul National University, Department of Musicology"
+    email: "dr.rosyrosys@gmail.com"
+    orcid: "https://orcid.org/0000-0001-7699-867X"
 keywords:
   - cross-modal transcoding
-  - star charts
-  - nocturne
-  - deterministic mapping
-  - instrument-as-witness
-  - parametric mapping sonification
-  - generative art
+  - Pythagorean Quadrivium
+  - star atlases
+  - nineteenth-century nocturne
+  - Music of the Spheres
+  - deterministic computation
+  - art-science recovery
 license: MIT
-version: 1.0.0
-date-released: "2026-01-01"
+version: "1.0.0"
+date-released: "2026-05-08"
+url: "https://github.com/rosyrosys/nocturne-atlas"
+repository-code: "https://github.com/rosyrosys/nocturne-atlas"
 preferred-citation:
   type: article
-  title: "Nocturne Atlas: a deterministic bidirectional transcoder between pre-photographic star charts and the nineteenth-century nocturne"
+  title: "Numbers in Time and Space: A Deterministic Transcoder Between the Pre-Photographic Star Chart and the Nineteenth-Century Nocturne"
   authors:
-    - given-names: "[redacted for review]"
-      family-names: "[redacted for review]"
+    - given-names: "Eun-Ji"
+      family-names: "Park"
+      affiliation: "Seoul National University"
+      orcid: "https://orcid.org/0000-0001-7699-867X"
   year: 2026
   journal: "[Journal title to be confirmed upon acceptance]"
   doi: "[to be inserted upon acceptance]"
