@@ -27,6 +27,9 @@ python synthesize_demo_inputs.py
 # Generate the two paired plates in the paper register (default, canonical)
 python run_paper.py
 
+# Plate III: real Bode (1801) plate processed through the engraved-plate preprocessor
+python run_paper_real.py
+
 # Alternate visual register: heavy parchment instead of paper
 python run_quadrivium.py
 ```
@@ -58,7 +61,8 @@ quadrivium/
 │                            #   four-phrase chord progression, Tetractys drone)
 ├── astronomy.py             # audio → planisphere (numbers in time and space) + ring detection
 ├── paper.py                 # paper register: clean ivory engraving paper (default)
-└── parchment.py             # parchment register: dark sepia ink on aged paper
+├── parchment.py             # parchment register: dark sepia ink on aged paper
+└── preprocess.py            # engraved-plate preprocessor (real Bayer/Bode/Hevelius scans)
 ```
 
 The four submodules of `quadrivium/` correspond to the four sciences of the Pythagorean Quadrivium as Park (2025) describes them: arithmetic (pure numbers), geometry (numbers in space), music (numbers in time), astronomy (numbers in time and space). The bidirectional transcoder is the operative numerical mediation between music and astronomy that the historical Quadrivium tradition treated as their underlying kinship.
