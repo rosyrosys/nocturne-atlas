@@ -19,8 +19,13 @@ keywords:
 license: MIT
 version: "1.0.0"
 date-released: "2026-05-08"
+doi: "10.5281/zenodo.20085795"
 url: "https://github.com/rosyrosys/nocturne-atlas"
 repository-code: "https://github.com/rosyrosys/nocturne-atlas"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20085795"
+    description: "Zenodo archived release v1.0.0"
 preferred-citation:
   type: article
   title: "Numbers in Time and Space: A Deterministic Transcoder Between the Pre-Photographic Star Chart and the Nineteenth-Century Nocturne"
