@@ -3,7 +3,7 @@ title: "Nocturne Atlas: a deterministic bidirectional transcoder between pre-pho
 message: "If you use this software, please cite both the software (this record) and the accompanying article."
 type: software
 authors:
-  - given-names: "Eun-Ji"
+  - given-names: "Eun Ji"
     family-names: "Park"
     affiliation: "Seoul National University, Department of Musicology"
     email: "dr.rosyrosys@gmail.com"
@@ -30,7 +30,7 @@ preferred-citation:
   type: article
   title: "Numbers in Time and Space: A Deterministic Transcoder Between the Pre-Photographic Star Chart and the Nineteenth-Century Nocturne"
   authors:
-    - given-names: "Eun-Ji"
+    - given-names: "Eun Ji"
       family-names: "Park"
       affiliation: "Seoul National University"
       orcid: "https://orcid.org/0000-0001-7699-867X"

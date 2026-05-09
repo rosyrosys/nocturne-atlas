@@ -3,7 +3,7 @@
   "description": "<p>A deterministic bidirectional transcoder between pre-photographic Western star charts (Bayer 1603 to Bode 1801) and the nineteenth-century European nocturne (Field through Debussy). Implemented in pure Python with no learned model and no GPU; outputs are bit-identical given fixed input and configuration. Detected stars on a planispheric plate map to MIDI events; spectral peaks of audio map to a planisphere via time-to-angle and log-frequency-to-radius mappings. A concentric-ring artifact in audio-derived charts surfaces as a contemporary instance of the Music of the Spheres.</p><p>This software accompanies a forthcoming peer-reviewed article framing the work within the Pythagorean Quadrivium tradition.</p>",
   "creators": [
     {
-      "name": "Park, Eun-Ji",
+      "name": "Park, Eun Ji",
       "affiliation": "Seoul National University, Department of Musicology",
       "orcid": "0000-0001-7699-867X"
     }
